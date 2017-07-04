@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import BoardList from './BoardList.js';
+import CardDetails from './CardDetails.js';
 
 // is-sibling-sidebar-open
 class BoardCanvas extends Component {
@@ -8,6 +9,8 @@ class BoardCanvas extends Component {
     super(props, context);
 
     this.state = {
+      isToggleCardDetails: false,
+      isToggleBoardOverlay: false,
       data: {
         "lists": [
         {"id":"8yMwDPEje4arvhtoG", "title":"Wishes for next release","boardId":"t2YaGmyXgNkppcFBq","sort":2,"createdAt":{"$date":1476985812788},"archived":true,"userId":"r99XtfBvEa2xawd5g","modifiedAt":{"$date":1486534101199}},
@@ -30,19 +33,41 @@ class BoardCanvas extends Component {
         {"id":"ARMWJb6J8KybdGo2a","title":"2016-10-20 Created Wekan fork GitHub repo and invited pull request contributors to it. Created Rocket.Chat channel Wekan instance that is now used for this roadmap.","members":["7fBwJupEqtBqN9yGm"],"labelIds":["d8sRTC"],"listId":"sXreXGsAvXDBNqSpf","boardId":"t2YaGmyXgNkppcFBq","sort":4,"createdAt":{"$date":1476986114489},"dateLastActivity":{"$date":1476986114489},"archived":false,"userId":"r99XtfBvEa2xawd5g"}
 ]
         }
+        
     };
+    this.toggleCardDetail = this.toggleCardDetail.bind(this);
+    this.toggleBoardOverlay = this.toggleBoardOverlay.bind(this);
   };
+    toggleCardDetail() {
+      console.log('toggle card detail pane');
+      this.setState(prevState => ({
+        isToggleCardDetails: !prevState.isToggleCardDetails
+      }));
+    }
+    toggleBoardOverlay() {
+      console.log('toggle boardoverlay');
+      this.setState(prevState => ({
+        isToggleBoardOverlay: !prevState.isToggleBoardOverlay
+      }));
+    }
   render() {
     const lists = this.state.data.lists.map((list) =>
       <BoardList messages={this.state.data} list={list} />
     );
     //board-canvas is-sibling-sidebar-open 
-    return (
+    if (this.state.isToggleCardDetails) {
+return (
 <div className="board-canvas">
+  <div className="board-overlay"></div>
 <div className="lists js-lists ui-sortable">
-    {lists}
-
-
+    {/* lists */}
+    <BoardList messages={this.state.data} list={this.state.data.lists[0]} toggleCardDetail={this.toggleCardDetail} />
+    <CardDetails toggleCardDetail={this.toggleCardDetail} toggleBoardOverlay={this.toggleBoardOverlay}  />
+    <BoardList messages={this.state.data} list={this.state.data.lists[1]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[2]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[3]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[3]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[3]} toggleCardDetail={this.toggleCardDetail} />
     { /* new list */}
  
 </div> { /* end ui-sortable */ }
@@ -50,6 +75,28 @@ class BoardCanvas extends Component {
 </div> 
 
     );
+  }
+  else {
+return (
+<div className="board-canvas">
+<div className="lists js-lists ui-sortable">
+    {/* lists */}
+    <BoardList messages={this.state.data} list={this.state.data.lists[0]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[1]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[2]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[3]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[3]} toggleCardDetail={this.toggleCardDetail} />
+    <BoardList messages={this.state.data} list={this.state.data.lists[3]} toggleCardDetail={this.toggleCardDetail} />
+    { /* new list */}
+ 
+</div> { /* end ui-sortable */ }
+{ /* end board-canvas */ }
+</div> 
+
+    );
+
+  }
+    
   }
 }
 

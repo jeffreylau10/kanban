@@ -5,9 +5,9 @@ class CardDetails extends Component {
     render() {
         return (
         <section className="card-details js-card-details js-perfect-scrollbar ps-container">
-            <div className="card-details-canvas">
+            <div className="card-details-canvas" onMouseEnter={this.props.toggleBoardOverlay.bind(this)}>
                 <div className="card-details-header">
-                    <a className="fa fa-times-thin close-card-details js-close-card-details" href="#"></a>
+                    <a className="fa fa-times-thin close-card-details js-close-card-details" onClick={this.props.toggleCardDetail.bind(this)}></a>
                     <h2 className="card-details-title js-card-title">Standalone version / Docker: Always up-to-date, automatic trusted builds triggered when there is new commit.</h2>
                 </div>
                 <div className="card-details-items">
@@ -43,7 +43,7 @@ class CardDetails extends Component {
                 <div className="activities js-sidebar-activities">
                     <div className="activity">
                         <a className="member js-member" title=" (xet7)" href="#" aria-label=" (xet7)">
-                            <img className="avatar avatar-image" src="/cfs/files/avatars/RaoR77F6XrkXxWNmt/xet7.jpg" />
+                            <svg className="avatar avatar-initials" viewBox="0 0 12 15"><text x="50%" y="13" text-anchor="middle">X</text></svg>
                         </a>
                         <p className="activity-desc">xet7 added this card to Platforms status now.
                             <span title="Wed Feb 08 2017 14:26:46 GMT+0800 (Malay Peninsula Standard Time)" className="activity-meta">5 months ago</span>

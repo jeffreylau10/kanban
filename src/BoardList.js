@@ -5,25 +5,25 @@ import CardDetails from './CardDetails.js';
 import PerfectScrollbar from 'react-perfect-scrollbar'
 
 class BoardList extends Component {
+   
     render() {
     const cards = this.props.messages.cards.map((card) =>
-      <Card data={card} />
+      <Card data={card} toggleCardDetail={this.props.toggleCardDetail} />
     );
-        return (
-          <div>
-<div className="list js-list">
-    <div className="list-header js-list-header ui-sortable-handle">
-      <h2 className="list-header-name">{this.props.list.title}</h2>
-    </div>
-    <PerfectScrollbar className="list-body">
-      <div className="minicards clearfix js-minicards ui-sortable ui-sortable-disabled">
-        {cards}
-      </div>
-    </PerfectScrollbar>
-  </div>
-  <CardDetails />
-  </div>
-        );
+         return (<div>
+          <div className="list js-list">
+              <div className="list-header js-list-header ui-sortable-handle">
+                <h2 className="list-header-name">{this.props.list.title}</h2>
+              </div>
+              <PerfectScrollbar className="list-body">
+                <div className="minicards clearfix js-minicards ui-sortable ui-sortable-disabled">
+                  {cards}
+                </div>
+              </PerfectScrollbar>
+            </div>
+          </div>
+         );
+       
     }
 }
 

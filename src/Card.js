@@ -4,7 +4,7 @@ import './App.css';
 class Card extends Component {
   render() {
     return (
-<a className="minicard-wrapper js-minicard ui-droppable" href="https://wekan.indie.host/b/t2YaGmyXgNkppcFBq/wekan-fork-roadmap/Soypexh7ZnDEth4RR">
+<a className="minicard-wrapper js-minicard ui-droppable" onClick={this.props.toggleCardDetail.bind(this)}>
     <div className="minicard">
         <div className="minicard-labels">
             <div className="minicard-label card-label-purple" title="Platforms"></div>
