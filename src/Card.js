@@ -10,7 +10,7 @@ class Card extends Component {
             <div className="minicard-label card-label-purple" title="Platforms"></div>
             <div className="minicard-label card-label-black" title="Has newest Wekan"></div>
         </div>
-        <div className="minicard-title">Standalone version / Docker: Always up-to-date, automatic trusted builds triggered when there is new commit.</div>
+        <div className="minicard-title">{this.props.data.title}</div>
         <div className="dates">
         </div>
 
